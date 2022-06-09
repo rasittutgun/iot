@@ -1,0 +1,79 @@
+<div class="title-container">
+  <button mat-button class="button" (click)="flushRedis()"> Flush</button>
+  <div class="text">  {{title}}</div>
+</div>
+
+
+
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="datasource" matSort>
+
+    <ng-container matColumnDef="#">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
+      <mat-cell *matCellDef="let element; let i = index;">{{ i+1 }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="MAC(sinyal)">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> MAC(sinyal) </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.MAC }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Telefon Model Sonucu">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Telefon Model Sonucu </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.Label }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Güven ve Sayı">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Güven ve Sayı </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ (element.Confidence | number: '1.2-2') + " - " + (+element.ApprovedCount + +element.RejectedCount) }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Karar">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Karar </mat-header-cell>
+
+      <mat-cell *matCellDef="let element">
+        <td *ngIf="element.ApprovedCount > element.RejectedCount && element.ApprovedCount + element.RejectedCount >= 5"  >
+          <mat-icon class="green-icon" svgIcon="success"></mat-icon>
+          <span class="mat-icon-text-approved">Onaylandı</span>
+        </td>
+  
+        <td *ngIf="element.RejectedCount >= element.ApprovedCount && element.ApprovedCount + element.RejectedCount >= 5">
+          <mat-icon class="red-icon" svgIcon="fail"></mat-icon>
+          <span class="mat-icon-text-rejected">Reddedildi</span>
+        </td>
+  
+        <td *ngIf="element.ApprovedCount + element.RejectedCount < 5 ">
+          <span>Data Bekleniyor..</span>
+        </td>
+      </mat-cell>
+    </ng-container>
+
+  
+    <ng-container matColumnDef="Son Güncellenme Zamanı">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Son Güncellenme Zamanı </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.LastUpdateTime }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="KNN Uzay">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> KNN Uzay </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-button  (click)="getImage(element.ImagePathApproved, element.ImagePathRejected)"> KNN Uzay</button>  
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; let i = index; columns: displayedColumns;" matRipple class="element-row" [cdkDetailRow]="row" [cdkDetailRowTpl]="tpl">
+    </mat-row>
+
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[10, 20, 50, 100]"></mat-paginator>
+
+</div>
+
+
+<ng-template #tpl let-element>
+  <div class="mat-row detail-row" [@detailExpand] style="overflow: hidden">
+    {{ element.HistoricalResults }}
+  </div>
+</ng-template>
+    

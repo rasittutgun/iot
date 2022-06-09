@@ -1,0 +1,8 @@
+scikit_learn==0.24.1
+matplotlib
+numpy
+keras
+tensorflow
+redis
+pyinotify
+python-dotenv
