@@ -17,7 +17,7 @@ This command will start the Django server inside the iot-subprocess_web containe
 Send a POST request to ```http://127.0.0.1:8000/api/v1/sendSignalAcquisitionParameters``` along with a JSON file that contains fields from SignalAcquisitionSchema(SignalAcquisitionSchema can be seen at [127.0.0.1/api/v1/docs](http://127.0.0.1:8000/api/v1/docs)).
 
 # Running the record_kayit_v3_live.sh
-Send a POST request to ``` [http://127.0.0.1:8000/api/v1/sendSignalProcessingParameters](http://127.0.0.1:8000/api/v1/sendSignalProcessingParameters) ``` along with a JSON file that contains fields from SignalProcessingSchema(SignalProcessingSchema can be seen at [127.0.0.1/api/v1/docs](http://127.0.0.1:8000/api/v1/docs)).
+Send a POST request to ```http://127.0.0.1:8000/api/v1/sendSignalProcessingParameters``` along with a JSON file that contains fields from SignalProcessingSchema(SignalProcessingSchema can be seen at [127.0.0.1/api/v1/docs](http://127.0.0.1:8000/api/v1/docs)).
 
 # Stopping the signal-acquire containers
 Send a GET request to ```[http://127.0.0.1/api/v1/takeDownSignalAcquisition](http://127.0.0.1:8000/api/v1/takeDownSignalAcquisition)``` to stop all signal-acquire containers.
