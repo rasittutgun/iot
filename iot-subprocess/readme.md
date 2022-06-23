@@ -1,8 +1,15 @@
 # iot-subprocess
-There needs to be a volume named "data" in order to make container work. Create the volume using;
+- There needs to be a volume named "data" in order to make container work. Create the volume using;
 ``` docker volume create --name data ```
 
-Create a folder that contains tuncer_unknown_unprocessed and new_dataset(empty folder). And put this folder's path into volumes in the docker-compose.yml file.
+- Create a folder that contains tuncer_unknown_unprocessed and new_dataset(empty folder). And put this folder's path into volumes in the docker-compose.yml file.
+``` 
+Example: 
+$ls /home/desktop/data 
+tuncer_unknown_unprocessed  new_dataset 
+
+- You should put the absolute path of ````/home/desktop/data```` inside docker-compose.yml. 
+```
 
 Put the signal-acquire.tar inside the iot-subprocess folder.
 
