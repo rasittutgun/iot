@@ -1,4 +1,4 @@
-# iot-subprocess
+# iot-subprocess - IOT-410
 - There needs to be a volume named "data" in order to make container work. Create the volume using;
 ``` docker volume create --name data ```
 
@@ -13,22 +13,22 @@ tuncer_unknown_unprocessed  new_dataset
 
 - Put the signal-acquire.tar inside the iot-subprocess folder.
 
-# Running With Make
+## Running With Make
 To run,
 ``` make run ```
 
 To take down the container,
 ``` make down ```
 
-# Running With Docker
+## Running With Docker
 This command will start the Django server inside the iot-subprocess_web container 
 ``` docker-compose up --build ```
 
-# Running the signal-acquire.tar
+## Running the signal-acquire.tar
 Send a POST request to ```http://127.0.0.1:8000/api/v1/sendSignalAcquisitionParameters``` along with a JSON file that contains fields from SignalAcquisitionSchema(SignalAcquisitionSchema can be seen at [127.0.0.1/api/v1/docs](http://127.0.0.1:8000/api/v1/docs)).
 
-# Running the record_kayit_v3_live.sh
+## Running the record_kayit_v3_live.sh
 Send a POST request to ```http://127.0.0.1:8000/api/v1/sendSignalProcessingParameters``` along with a JSON file that contains fields from SignalProcessingSchema(SignalProcessingSchema can be seen at [127.0.0.1/api/v1/docs](http://127.0.0.1:8000/api/v1/docs)).
 
-# Stopping the signal-acquire containers
+## Stopping the signal-acquire containers
 Send a GET request to ```http://127.0.0.1/api/v1/takeDownSignalAcquisition``` to stop all signal-acquire containers.
