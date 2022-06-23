@@ -11,10 +11,14 @@ tuncer_unknown_unprocessed  new_dataset
 - You should put the absolute path of ````/home/desktop/data```` inside docker-compose.yml. 
 ```
 
-Put the signal-acquire.tar inside the iot-subprocess folder.
+- Put the signal-acquire.tar inside the iot-subprocess folder.
 
 # Running With Make
+To run,
 ``` make run ```
+
+To take down the container,
+``` make down ```
 
 # Running With Docker
 This command will start the Django server inside the iot-subprocess_web container 
