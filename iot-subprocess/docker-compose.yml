@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    privileged: true
+    #change this path; "C:\Users\ahmet\Desktop\data" to your data path that contains tuncer_unknown_unprocessed and new_dataset.
+    volumes:
+      - .:/app
+      - C:\Users\ahmet\Desktop\data:/app/win_data
+      - //var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes/data:/app/data
+
+    # entrypoint: bash -c "while true; do sleep 1; done"
+    #mv app/win_data/data/* app/data/ use this command to send the tuncer_unknown_unprocessed and new_dataset(empty dir) into the docker volume "data"
+    #If you already put these files in the Docker volume "data" by hand, you can delete this command from command:
+    command: >
+      sh -c " apt-get update && apt install docker -y &&
+              apt install docker-compose -y &&
+              mv win_data/* data/ &&
+              docker load --input signal-acquire.tar &&
+              python manage.py makemigrations &&
+              python manage.py migrate &&
+              python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    #environment:
+      
+    #depends_on:
+      #- db
